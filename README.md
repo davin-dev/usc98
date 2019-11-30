@@ -1,9 +1,9 @@
 # Simple MVC News Website
 
-NOTE : database backup files are included.
+NOTE : database backup files are included.<br>
 
-Update 1 : 
-News Section Added.
-Admin Panel fixed.
-UTF-8 Database connection fixed.
-Code Cleanups.
+Update 1 : <br>
+News Section Added.<br>
+Admin Panel fixed.<br>
+UTF-8 Database connection fixed.<br>
+Code Cleanups.<br>
