@@ -14,6 +14,8 @@
 
         public function select ($sql)
         {
-            return $this->db->query($sql);
+            //die($sql);
+            return $this->db->query($sql);  
+
         }
     }
