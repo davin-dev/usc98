@@ -7,3 +7,8 @@ NOTE : database backup files are included.<br>
 - Admin Panel fixed.<br>
 - UTF-8 Database connection fixed.<br>
 - Code Cleanups.<br>
+
+**Update 2 : <br>**
+- News category system added.<br>
+- 
+- 
