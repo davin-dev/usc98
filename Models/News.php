@@ -21,11 +21,15 @@
        $this->select("UPDATE news SET `view_count` = `view_count` + 1 WHERE `id` = '$id' ");
     }
 
-    public function add($headline,$content,$excerpt,$picture,$date)
+    public function get_cat(){
+      return $this->select("SELECT * FROM news_cat");
+    }
+    
+    public function add($headline,$content,$excerpt,$cat_id,$picture,$date)
     {
       
-      return $this->select("INSERT INTO `news` (`headline` ,`content` ,`excerpt` ,`picture` ,`date`)
-                    VALUES ('$headline', '$content','$excerpt', '$picture', '$date');");
+      return $this->select("INSERT INTO `news` (`headline` ,`content` ,`excerpt` ,`news_cat` ,`picture` ,`date`)
+                    VALUES ('$headline', '$content','$excerpt','$cat_id', '$picture', '$date');");
     }
 
     public function delete()

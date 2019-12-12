@@ -181,19 +181,25 @@
 	*/
 	public function addNews ()
 	{
-		
+		include("Models/News.php");
+		$news = new News();
+		$name_cat = $news->get_cat();
+		$data['name_cat'] = $name_cat;
+
+
 		$this->view->render("admin/_include/header_view");
-		$this->view->render("admin/addnews",NULL);
+		$this->view->render("admin/addnews",$data);
+
+		
 		
 		if(isset($_POST['btn']))	{
 			$headline = $_POST['headline'];
 			$content = $_POST['content'];
 			$excerpt = $_POST['excerpt'];
+			$cat_id = $_POST['news_cat'];
 			$picture = $_POST['picture'];
 		 	$date = $_POST['date'];
-			include("Models/News.php");
-			$news = new News();
-			$addnews = $news->add($headline,$content,$excerpt,$picture,$date);
+			$addnews = $news->add($headline,$content,$excerpt,$cat_id,$picture,$date);
 			echo "<font color='green'> News added!</font>";
 		}
 		$this->view->render("front/_include/footer_view");
