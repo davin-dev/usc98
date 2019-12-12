@@ -1,6 +1,6 @@
 <?php
   // set_init('display_error', 1);
-  session_start();
+  session_start();    //global session check.
   
   define("HOST", "localhost");
   define("DB_USERNAME", "root");
