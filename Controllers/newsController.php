@@ -15,8 +15,10 @@
         $news[$i]['id'] = $row['id'];
         $news[$i]['headline'] = $row['headline'];
         $news[$i]['excerpt'] = $row['excerpt'];
-        $news[$i]['news_cat'] = $row['news_cat'];
         $news[$i]['picture'] = $row['picture'];
+        
+        $category = $this->model->get_category($row['news_cat']);
+        $news[$i]['category'] = $category["title"];
         $i++;
       }
       $data['news'] = $news;
