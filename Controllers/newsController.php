@@ -32,12 +32,14 @@
       $data = [];
       $count = $this->model->countplus($id);
       while ($row = $oneNews->fetch_assoc()){
+        $news['news_cat'] = $row['news_cat'];
         $news['headline'] = $row['headline'];
         $news['excerpt'] = $row['excerpt'];
         $news['picture'] = $row['picture'];
         $news['content'] = $row['content'];
         $news['view_count'] = $row['view_count'];
-        
+        $category = $this->model->get_category($news['news_cat']);
+        $news['category'] = $category["title"];
       }
       $data['news'] = $news;
       $this->view->render("front/_include/header_view");

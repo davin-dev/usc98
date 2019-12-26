@@ -1,6 +1,12 @@
 <?php
   class News extends DB
   {
+    private $category;
+    private $id;
+    private $title;
+    private $excerpt;
+    private $content;
+
     function __construct()
     {
       parent::__construct();
@@ -10,11 +16,13 @@
     public function get_all()
     {
       return $this->select("SELECT * FROM news");
+
     }
 
     public function get_news($id)
     {
-      return $this->select("SELECT * FROM news WHERE `id` = $id");
+      $rows = $this->select("SELECT * FROM news WHERE `id` = $id");
+      return $rows;
     }
 
     public function countplus($id){
@@ -39,5 +47,13 @@
       return $this->select("SELECT * FROM news");
     }
 
+    public function get_category ($id = null)
+    {
+      if ( !$id ){
+        return $this->select("SELECT * FROM news_cat");
+      } else {
+        return mysqli_fetch_assoc($this->select("SELECT * FROM `news_cat` WHERE (`id`=$id)"));
+      }
+    }
     
   }
