@@ -15,6 +15,7 @@
         $news[$i]['id'] = $row['id'];
         $news[$i]['headline'] = $row['headline'];
         $news[$i]['excerpt'] = $row['excerpt'];
+        $news[$i]['news_cat'] = $row['news_cat'];
         $news[$i]['picture'] = $row['picture'];
         $i++;
       }
@@ -23,7 +24,8 @@
       $this->view->render("front/news/index_view", $data);
       $this->view->render("front/_include/footer_view");
     }
-    public function continue()
+
+    public function continued()
     {
       $id = $_GET['id'];
       $oneNews = $this->model->get_news($id);
