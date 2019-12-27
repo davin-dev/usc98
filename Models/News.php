@@ -25,6 +25,19 @@
       return $rows;
     }
 
+    public function fileupload ($file) 
+    {
+        $target_dir    = "public/img/";
+        $target_file   = $target_dir . basename( $file["name"] );
+
+        
+            if ( move_uploaded_file( $file["tmp_name"], $target_file ) ) {
+				echo "<font color='green'> The file " . basename( $file["name"] ) . " has been uploaded.</font>";
+            } else {
+                echo "Sorry, there was an error uploading your file.";
+            }
+    }
+
     public function countplus($id){
        $this->select("UPDATE news SET `view_count` = `view_count` + 1 WHERE `id` = '$id' ");
     }

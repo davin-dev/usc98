@@ -70,21 +70,12 @@
 	}
 	
 	public function upload ()
-	{
-		if($this->is_admin()) {
-			$this->view->render("admin/_include/header_view");
-			$this->view->render("admin/uploadform");
-			
-
-			if(isset($_POST['submit']))	{
+	{ 
 				include("Models/Upload.php");
 				$file_to_upload = new Upload();
 				$file = $_FILES["fileToUpload"];
 				$uploaded = $file_to_upload->fileupload($file);
 				
-			}
-			$this->view->render("front/_include/footer_view");
-		}
 	
 	}
 
@@ -236,11 +227,14 @@
 		
 		
 		if(isset($_POST['btn']))	{
+			$this->upload();
+
+
 			$headline = $_POST['headline'];
 			$content = $_POST['content'];
 			$excerpt = $_POST['excerpt'];
 			$cat_id = $_POST['news_cat'];
-			$picture = $_POST['picture'];
+			$picture = $_FILES['fileToUpload']['name'];
 		 	$date = $_POST['date'];
 			$addnews = $news->add($headline,$content,$excerpt,$cat_id,$picture,$date);
 			echo "<font color='green'> News added!</font>";
