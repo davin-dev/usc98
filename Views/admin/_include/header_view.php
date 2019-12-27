@@ -6,12 +6,13 @@
 
 <body>
 <div class="site-header">
-    <h1 class="site-title">Admin panel</h1>
+        <h1>
+            <a class="link" href="<?= BASE_URL ?>">News Website</a>
+        </h1>
 </div>
 
     <div class="navigation">
         <ul>
-            <li><a href="/admin">Home</a></li>
             <li><a href="/admin/getNews">News list</a> </li>
             <li><a href="/admin/addNews">Insert news</a> </li>
             <li><a href="/admin/cat_mang">Category Management</a> </li>

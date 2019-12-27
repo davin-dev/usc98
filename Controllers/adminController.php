@@ -89,13 +89,42 @@
 	}
 
 	public function cat_mang(){
+		$allcat = $this->model->cat_get();
+		$data['allcat'] = $allcat;
 		$this->view->render("admin/_include/header_view");
-		$this->view->render("admin/cat_mang");
+		$this->view->render("admin/cat_mang",$data);
 		$this->view->render("front/_include/footer_view");
-
 		
+	}
 
+	public function cat_add(){
+		if(isset($_POST['submit']))	{
+			$name = $_POST['category'];
+			$addcat = $this->model->cat_add($name);
 
+			$allcat = $this->model->cat_get();
+			$data['allcat'] = $allcat;
+			$this->view->render("admin/_include/header_view");
+			$this->view->render("admin/cat_mang",$data);
+			echo "<font color='green'> Category Added!</font>";
+			$this->view->render("front/_include/footer_view");
+		}
+
+	}
+
+	public function cat_delete(){
+		$id = $_GET['id'];
+		$addcat = $this->model->cat_delete($id);
+
+		$allcat = $this->model->cat_get();
+		$data['allcat'] = $allcat;
+		$this->view->render("admin/_include/header_view");
+		$this->view->render("admin/cat_mang",$data);
+		$allcat = $this->model->cat_get();
+		$data['allcat'] = $allcat;
+		echo "<font color='red'> Category Deleted!</font>";
+		$this->view->render("front/_include/footer_view");
+		
 	}
 
 
