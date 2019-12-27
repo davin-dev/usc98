@@ -30,12 +30,16 @@
 
 		$this->view->render("front/_include/header_view");
 		$this->view->render("admin/auth/login_form_view", $data);
+		$this->view->render("front/_include/footer_view");
+
     }
 
     public function dashboard()
     {
         $this->view->render("admin/_include/header_view");
-        $this->view->render("admin/_include/dashboard_view");
+		$this->view->render("admin/_include/dashboard_view");
+		$this->view->render("front/_include/footer_view");
+
     }
 
     public function login(){
@@ -82,6 +86,16 @@
 			$this->view->render("front/_include/footer_view");
 		}
 	
+	}
+
+	public function cat_mang(){
+		$this->view->render("admin/_include/header_view");
+		$this->view->render("admin/cat_mang");
+		$this->view->render("front/_include/footer_view");
+
+		
+
+
 	}
 
 
