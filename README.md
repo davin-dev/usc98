@@ -2,7 +2,7 @@
 
 NOTE : database backup files are included.<br>
 
-\*TODO LIST :
+#### TODO LIST
 
 - Search Engine<br>
 - LIKE Button<br>
@@ -21,3 +21,4 @@ NOTE : database backup files are included.<br>
 - Website title link fixed.<br>
 - CSS bugs fixed.<br>
 - News Image Upload reworked.<br>
+
