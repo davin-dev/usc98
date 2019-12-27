@@ -2,11 +2,11 @@
 	
 	<body>
 	
-		<form method="POST" action="./addNews">
+		<form method="POST" action="./addNews" enctype="multipart/form-data">
 		<h1>Headline : <input type="text" name="headline">
 		<h1>Excerpt : <input type="text" name="excerpt">
 		<h1>News Content : <input type="textarea" name="content">
-		<h1>Picture Name : <input type="text" name="picture">
+		<h1>News Picture : <input type="file" name="fileToUpload" id="fileToUpload">
 		<h1>News Category : <select name="news_cat">
 						<?php 
 						
@@ -29,3 +29,4 @@
 </html>
 
 
+ 

@@ -7,7 +7,9 @@
 
 <body>
     <div class="site-header">
-        <h1 class="site-title">Site title</h1>
+        <h1>
+            <a class="link" href="<?= BASE_URL ?>">News Website</a>
+        </h1>
     </div>
 
     <div class="navigation">

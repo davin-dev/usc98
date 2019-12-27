@@ -21,4 +21,18 @@
                 return false;
             }
         }
+
+        public function cat_add($name){
+            return $this->select("INSERT INTO `news_cat` (`title`)
+                    VALUES ('$name');");
+
+        }
+
+        public function cat_get(){
+            return $this->select("SELECT * FROM `news_cat` ");
+        }
+
+        public function cat_delete($id){
+            $this->select("DELETE FROM `news_cat` WHERE `id` = $id");
+        }
     }

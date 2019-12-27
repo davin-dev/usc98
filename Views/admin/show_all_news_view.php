@@ -1,24 +1,3 @@
-<style>
-	*{
-		margin: 0;
-		padding: 0;
-	}
-	th{
-		background: #555;
-		color: #fff;
-		padding: 10px;
-		border: none;
-	}
-	
-	tr:nth-child(odd){
-		background: #ddd;
-	}
-	
-	.remove{
-		color: #f00;
-	}
-</style>
-
 <table>
 	<tr>
 		<th>id</th>

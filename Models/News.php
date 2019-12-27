@@ -1,6 +1,12 @@
 <?php
   class News extends DB
   {
+    private $category;
+    private $id;
+    private $title;
+    private $excerpt;
+    private $content;
+
     function __construct()
     {
       parent::__construct();
@@ -10,11 +16,26 @@
     public function get_all()
     {
       return $this->select("SELECT * FROM news");
+
     }
 
     public function get_news($id)
     {
-      return $this->select("SELECT * FROM news WHERE `id` = $id");
+      $rows = $this->select("SELECT * FROM news WHERE `id` = $id");
+      return $rows;
+    }
+
+    public function fileupload ($file) 
+    {
+        $target_dir    = "public/img/";
+        $target_file   = $target_dir . basename( $file["name"] );
+
+        
+            if ( move_uploaded_file( $file["tmp_name"], $target_file ) ) {
+				echo "<font color='green'> The file " . basename( $file["name"] ) . " has been uploaded.</font>";
+            } else {
+                echo "Sorry, there was an error uploading your file.";
+            }
     }
 
     public function countplus($id){
@@ -39,5 +60,13 @@
       return $this->select("SELECT * FROM news");
     }
 
+    public function get_category ($id = null)
+    {
+      if ( !$id ){
+        return $this->select("SELECT * FROM news_cat");
+      } else {
+        return mysqli_fetch_assoc($this->select("SELECT * FROM `news_cat` WHERE (`id`=$id)"));
+      }
+    }
     
   }
