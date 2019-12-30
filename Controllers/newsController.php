@@ -27,19 +27,22 @@
       $this->view->render("front/_include/footer_view");
     }
 
-    public function continued()
+    public function continued($id = NULL)
     {
       $id = $_GET['id'];
       $oneNews = $this->model->get_news($id);
       $data = [];
       $count = $this->model->countplus($id);
       while ($row = $oneNews->fetch_assoc()){
+        
+        $news['id'] = $row['id'];
         $news['news_cat'] = $row['news_cat'];
         $news['headline'] = $row['headline'];
         $news['excerpt'] = $row['excerpt'];
         $news['picture'] = $row['picture'];
         $news['content'] = $row['content'];
         $news['view_count'] = $row['view_count'];
+        $news['likes'] = $row['likes'];
         $category = $this->model->get_category($news['news_cat']);
         $news['category'] = $category["title"];
       }
@@ -47,6 +50,13 @@
       $this->view->render("front/_include/header_view");
       $this->view->render("front/news/onenews_view", $data);
       $this->view->render("front/_include/footer_view");
+
+    }
+
+    public function like(){
+      $id = $_GET['id'];
+      $this->model->likeadd($id);
+      $this->continued($id);
 
     }
 

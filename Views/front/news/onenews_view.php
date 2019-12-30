@@ -8,6 +8,7 @@
         <div class="note"><?= $news['excerpt']; ?></div>
         <div class="text"><?= $news['content']; ?></div><hr>
         <div class="count">view count : <?= $news['view_count']; ?></div>
+        <a href="/news/like&?id=<?= $news['id'] ?>" class="remove">♥  <?= $news['likes']; ?></div>
         <a href="/news">Back to News List</a>
     </div>
    

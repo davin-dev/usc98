@@ -127,6 +127,10 @@ body {
   border-style: inset;
   border-width: 33px;
 }
+a.continue {
+  color: blue;
+  text-decoration: none;
+}
 
 a:link {
   color: white;

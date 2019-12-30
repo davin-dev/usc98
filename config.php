@@ -7,4 +7,4 @@
   define("DB_PASS", "usbw");
   define("DB_NAME", 'usc');
 
-  define("BASE_URL", "http://localhost/");
+  define("BASE_URL", "http://localhost:8080/");

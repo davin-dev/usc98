@@ -6,7 +6,7 @@
         <div class="title"><h1><?= $ns['headline'] ?></h1></div>
         <div class="pic"><img src="<?= BASE_URL ?>public/img/<?= $ns['picture'] ?>"/></div>
         <div class="note"><?= $ns['excerpt']; ?></div>
-        <a href="news/continued&id=<?php echo $ns["id"]; ?>">Continue Reading</a>
+        <a class="continue" href="news/continued&id=<?php echo $ns["id"]; ?>">Continue Reading</a>
     </div>
     <br><hr>
     <?php } // end of foreach ?>

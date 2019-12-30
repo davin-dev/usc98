@@ -61,7 +61,11 @@ body {
 }
 .form-group .require,
 a.remove {
-  color: #f00;
+  color: rgb(255, 0, 0);
+}
+a.continue {
+  color: blue;
+  text-decoration: none;
 }
 .form-group label {
   width: 100px;
@@ -121,6 +125,5 @@ a.remove {
 a:visited,
 a:link,
 a.link {
-  color: white;
   text-decoration: none;
 }
