@@ -87,11 +87,33 @@
       $query = $_POST['q'];
       $result = $this->model->search($query);
 
+      $this->view->render("front/_include/header_view");
       while($row = $result->fetch_assoc()) {
         $id = $row['id'];
-        $this->continued($id,$errors = 3);
+        $this->result($id);
       }
+      $this->view->render("front/_include/footer_view");
     }
+
+    public function result($id){
+      $allNews = $this->model->get_news($id);
+      $data = [];
+      
+      while ($row = $allNews->fetch_assoc()){
+        $news['id'] = $row['id'];
+        $news['headline'] = $row['headline'];
+        $news['excerpt'] = $row['excerpt'];
+        $news['picture'] = $row['picture'];
+        
+        $category = $this->model->get_category($row['news_cat']);
+        $news['category'] = $category["title"];
+        
+      }
+      $data['news'] = $news;
+      $this->view->render("front/news/search_view", $data);
+    }
+
+
 
     public function like(){
       $id = $_GET['id'];

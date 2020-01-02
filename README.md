@@ -4,9 +4,11 @@ NOTE : database backup files are included.<br>
 
 #### TODO LIST
 
-- Search Engine<br>
+- Search Engine [ADDED✅]<br>
 - LIKE Button [ADDED✅]<br>
 - Comment System [ADDED✅]<br>
+- News Menu <br>
+- Slider <br>
 
 **Update 1 : <br>**
 
