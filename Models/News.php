@@ -77,7 +77,10 @@
         return mysqli_fetch_assoc($this->select("SELECT * FROM `news_cat` WHERE (`id`=$id)"));
       }
     }
-
+    public function search ($query)
+    {
+        return $this->select("SELECT * FROM news WHERE `headline` LIKE '%$query%'");
+    }
     public function like($id){
       return $this->select("SELECT likes FROM news WHERE `id` = $id");
     }

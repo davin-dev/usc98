@@ -9,16 +9,15 @@
     public function index ()
     {
       $query = $_POST['q'];
+      echo $query;
 
       $result = $this->model->search($query);
       
-      while ($row = $result->fetch_assoc()){
-            $news['id'] = $row['id'];
-        }
-    
-      
+      while($row = mysql_fetch_array($result)) {
+        echo $row['id']; 
+    }
 
-      echo $news['id'];
+
 
     }
 

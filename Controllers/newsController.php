@@ -30,7 +30,8 @@
     public function continued($id = NULL,$errors = 3)
     {
       $i = 0;
-      $id = $_GET['id'];
+      if($id == NULL) $id = $_GET['id'];
+      
       $oneNews = $this->model->get_news($id);
       $data = [];
       $count = $this->model->countplus($id);
@@ -80,6 +81,16 @@
       $errors = $data['errors'];
       
       $this->continued($id,$errors);
+    }
+
+    public function search(){
+      $query = $_POST['q'];
+      $result = $this->model->search($query);
+
+      while($row = $result->fetch_assoc()) {
+        $id = $row['id'];
+        $this->continued($id,$errors = 3);
+      }
     }
 
     public function like(){

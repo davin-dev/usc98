@@ -13,3 +13,7 @@
         $_SESSION[$session_name] = "";
         unset($_SESSION[$session_name]);
     }
+
+    function dv($data) {
+        die(var_dump($data));
+    }
