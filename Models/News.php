@@ -41,6 +41,15 @@
     public function countplus($id){
        $this->select("UPDATE news SET `view_count` = `view_count` + 1 WHERE `id` = '$id' ");
     }
+    
+    public function show_comments($id){
+      return $this->select("SELECT * FROM comments WHERE `news_id` = $id");
+    }
+
+    public function add_comment($id,$fullname,$text,$email){
+      $this->select("INSERT INTO `comments` (`fullname` ,`text` ,`email`,`news_id`)
+                    VALUES ('$fullname', '$text','$email','$id');");
+    }
 
     public function get_cat(){
       return $this->select("SELECT * FROM news_cat");

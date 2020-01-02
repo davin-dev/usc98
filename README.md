@@ -5,8 +5,8 @@ NOTE : database backup files are included.<br>
 #### TODO LIST
 
 - Search Engine<br>
-- LIKE Button<br>
-- Comment System<br>
+- LIKE Button [ADDED✅]<br>
+- Comment System [ADDED✅]<br>
 
 **Update 1 : <br>**
 
@@ -21,4 +21,3 @@ NOTE : database backup files are included.<br>
 - Website title link fixed.<br>
 - CSS bugs fixed.<br>
 - News Image Upload reworked.<br>
-

@@ -2,13 +2,13 @@
 
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="<?= BASE_URL ?>public/assets/admin/css/style.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>public/assets/front/css/style.css">
 </head>
 
 <body>
     <div class="site-header">
         <h1>
-            <a class="link" href="<?= BASE_URL ?>">News Website</a>
+            <a class="title" href="<?= BASE_URL ?>">News Website</a>
         </h1>
     </div>
 
