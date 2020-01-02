@@ -41,6 +41,15 @@
     public function countplus($id){
        $this->select("UPDATE news SET `view_count` = `view_count` + 1 WHERE `id` = '$id' ");
     }
+    
+    public function show_comments($id){
+      return $this->select("SELECT * FROM comments WHERE `news_id` = $id");
+    }
+
+    public function add_comment($id,$fullname,$text,$email){
+      $this->select("INSERT INTO `comments` (`fullname` ,`text` ,`email`,`news_id`)
+                    VALUES ('$fullname', '$text','$email','$id');");
+    }
 
     public function get_cat(){
       return $this->select("SELECT * FROM news_cat");
@@ -67,6 +76,17 @@
       } else {
         return mysqli_fetch_assoc($this->select("SELECT * FROM `news_cat` WHERE (`id`=$id)"));
       }
+    }
+    public function search ($query)
+    {
+        return $this->select("SELECT * FROM news WHERE `headline` LIKE '%$query%'");
+    }
+    public function like($id){
+      return $this->select("SELECT likes FROM news WHERE `id` = $id");
+    }
+
+    public function likeadd($id){
+      $this->select("UPDATE `news` SET `likes`= `likes` + 1 WHERE `id` = $id ");
     }
     
   }
