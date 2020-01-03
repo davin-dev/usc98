@@ -12,7 +12,7 @@
             }
         }
 
-        public function select ($sql)
+        public function db_exec($sql)
         {
             //die($sql);
             return $this->db->query($sql);  

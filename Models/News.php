@@ -15,13 +15,13 @@
 
     public function get_all()
     {
-      return $this->select("SELECT * FROM news");
+      return $this->db_exec("SELECT * FROM news");
 
     }
 
     public function get_news($id)
     {
-      $rows = $this->select("SELECT * FROM news WHERE `id` = $id");
+      $rows = $this->db_exec("SELECT * FROM news WHERE `id` = $id");
       return $rows;
     }
 
@@ -39,54 +39,54 @@
     }
 
     public function countplus($id){
-       $this->select("UPDATE news SET `view_count` = `view_count` + 1 WHERE `id` = '$id' ");
+       $this->db_exec("UPDATE news SET `view_count` = `view_count` + 1 WHERE `id` = '$id' ");
     }
     
     public function show_comments($id){
-      return $this->select("SELECT * FROM comments WHERE `news_id` = $id");
+      return $this->db_exec("SELECT * FROM comments WHERE `news_id` = $id");
     }
 
     public function add_comment($id,$fullname,$text,$email){
-      $this->select("INSERT INTO `comments` (`fullname` ,`text` ,`email`,`news_id`)
+      $this->db_exec("INSERT INTO `comments` (`fullname` ,`text` ,`email`,`news_id`)
                     VALUES ('$fullname', '$text','$email','$id');");
     }
 
     public function get_cat(){
-      return $this->select("SELECT * FROM news_cat");
+      return $this->db_exec("SELECT * FROM news_cat");
     }
     
     public function add($headline,$content,$excerpt,$cat_id,$picture,$date)
     {
       
-      return $this->select("INSERT INTO `news` (`headline` ,`content` ,`excerpt` ,`news_cat` ,`picture` ,`date`)
+      return $this->db_exec("INSERT INTO `news` (`headline` ,`content` ,`excerpt` ,`news_cat` ,`picture` ,`date`)
                     VALUES ('$headline', '$content','$excerpt','$cat_id', '$picture', '$date');");
     }
 
     public function delete()
     {
       $id = $_GET['id'];
-      $this->select("DELETE FROM `news` WHERE `id` = $id");
-      return $this->select("SELECT * FROM news");
+      $this->db_exec("DELETE FROM `news` WHERE `id` = $id");
+      return $this->db_exec("SELECT * FROM news");
     }
 
     public function get_category ($id = null)
     {
       if ( !$id ){
-        return $this->select("SELECT * FROM news_cat");
+        return $this->db_exec("SELECT * FROM news_cat");
       } else {
-        return mysqli_fetch_assoc($this->select("SELECT * FROM `news_cat` WHERE (`id`=$id)"));
+        return mysqli_fetch_assoc($this->db_exec("SELECT * FROM `news_cat` WHERE (`id`=$id)"));
       }
     }
     public function search ($query)
     {
-        return $this->select("SELECT * FROM news WHERE `headline` LIKE '%$query%'");
+        return $this->db_exec("SELECT * FROM news WHERE `headline` LIKE '%$query%'");
     }
     public function like($id){
-      return $this->select("SELECT likes FROM news WHERE `id` = $id");
+      return $this->db_exec("SELECT likes FROM news WHERE `id` = $id");
     }
 
     public function likeadd($id){
-      $this->select("UPDATE `news` SET `likes`= `likes` + 1 WHERE `id` = $id ");
+      $this->db_exec("UPDATE `news` SET `likes`= `likes` + 1 WHERE `id` = $id ");
     }
     
   }

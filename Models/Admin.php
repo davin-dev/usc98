@@ -16,23 +16,23 @@
                         WHERE (`username` = '$user') AND (`password` = $pass) 
                         AND (`access_level` = '1')";
 
-                return $this->select($sql);
+                return $this->db_exec($sql);
             } else {
                 return false;
             }
         }
 
         public function cat_add($name){
-            return $this->select("INSERT INTO `news_cat` (`title`)
+            return $this->db_exec("INSERT INTO `news_cat` (`title`)
                     VALUES ('$name');");
 
         }
 
         public function cat_get(){
-            return $this->select("SELECT * FROM `news_cat` ");
+            return $this->db_exec("SELECT * FROM `news_cat` ");
         }
 
         public function cat_delete($id){
-            $this->select("DELETE FROM `news_cat` WHERE `id` = $id");
+            $this->db_exec("DELETE FROM `news_cat` WHERE `id` = $id");
         }
     }
