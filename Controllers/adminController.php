@@ -6,6 +6,9 @@
 		parent::__construct();
     }
 
+	/**
+	* session check
+	*/
     private function is_admin()
     {
         if(isset($_SESSION['is_admin']) && $_SESSION['is_admin'])
@@ -16,6 +19,9 @@
         }
     }
 
+	/**
+	* login form render
+	*/
     public function index()
     {
         if($this->is_admin())
@@ -34,6 +40,9 @@
 
     }
 
+	/**
+	* dashboard render
+	*/
     public function dashboard()
     {
         $this->view->render("admin/_include/header_view");
@@ -42,6 +51,9 @@
 
     }
 
+	/**
+	* login function
+	*/
     public function login(){
         $result = $this->model->login();
         if ($result->num_rows) {
@@ -53,6 +65,9 @@
         }
     }
 
+	/**
+	* check admin session
+	*/
 	public function check_admin ()
 	{
 		if(isset($_POST['admin_username'])){
@@ -62,37 +77,41 @@
 			// admin login validation
 			if($user == 'admin' && $pass == "123456"){
 				$_SESSION['admin'] = true;
-				include("Views/admin/dashboard_view.php");
+				$this->dashboard();
 			}
 		} else {
 			return $this->index();
 		}
 	}
 	
+	/**
+	* upload file
+	*/
 	public function upload ()
 	{ 
-				include("Models/Upload.php");
-				$file_to_upload = new Upload();
-				$file = $_FILES["fileToUpload"];
-				$uploaded = $file_to_upload->fileupload($file);
-				
-	
+		$file_to_upload = $this->loadModel($news);
+		$file = $_FILES["fileToUpload"];
+		$uploaded = $file_to_upload->fileupload($file);
 	}
 
+	/**
+	* category management
+	*/
 	public function cat_mang(){
 		$allcat = $this->model->cat_get();
 		$data['allcat'] = $allcat;
 		$this->view->render("admin/_include/header_view");
 		$this->view->render("admin/cat_mang",$data);
 		$this->view->render("front/_include/footer_view");
-		
 	}
 
+	/**
+	* category add
+	*/
 	public function cat_add(){
 		if(isset($_POST['submit']))	{
 			$name = $_POST['category'];
 			$addcat = $this->model->cat_add($name);
-
 			$allcat = $this->model->cat_get();
 			$data['allcat'] = $allcat;
 			$this->view->render("admin/_include/header_view");
@@ -103,10 +122,12 @@
 
 	}
 
+	/**
+	* category delete
+	*/
 	public function cat_delete(){
 		$id = $_GET['id'];
 		$addcat = $this->model->cat_delete($id);
-
 		$allcat = $this->model->cat_get();
 		$data['allcat'] = $allcat;
 		$this->view->render("admin/_include/header_view");
@@ -115,7 +136,6 @@
 		$data['allcat'] = $allcat;
 		echo "<font color='red'> Category Deleted!</font>";
 		$this->view->render("front/_include/footer_view");
-		
 	}
 
 
@@ -124,8 +144,7 @@
 	*/
 	public function getNews ()
 	{
-		include("Models/News.php");
-		$news = new News();
+		$news = $this->loadModel($news);
 		$allNews = $news->get_all();
 		$data['allNews'] = $allNews;
 		$this->view->render("admin/_include/header_view");
@@ -134,39 +153,39 @@
 	}
 	
 	
-
+	/**
+	* show all messages
+	*/
 	public function show_messages ()
 	{
-		
-		
-		include("Models/Contact.php");
-		$messages = new Contact();
+		$messages = $this->loadModel($contact);
 		$allmessages = $messages->c_getall();
 		$data['allmessages'] = $allmessages;
 		$this->view->render("admin/_include/header_view");
 		$this->view->render("admin/all_messages", $data);
 		$this->view->render("front/_include/footer_view");
-
 	}
 
+	/**
+	* show one message
+	*/
 	public function show1_message ()
 	{
-		include("Models/Contact.php");
-		$messages = new Contact();
+		$messages = $this->loadModel($contact);
 		$id = $_GET['id'];
 		$onemessage = $messages->c_getone($id);
 		$data['onemessage'] = $onemessage;
 		$this->view->render("admin/_include/header_view");
 		$this->view->render("admin/show_message",$data);
 		$this->view->render("front/_include/footer_view");
-
 	}
 
+	/**
+	* delete message
+	*/
 	public function delete_messages ()
 	{
-		
-		include("Models/Contact.php");
-		$messages = new Contact();
+		$messages = $this->loadModel($contact);
 		$id = $_GET['id'];
 		$messages->c_delete($id);
 		$allmessages = $messages->c_getall();
@@ -175,30 +194,30 @@
 		$this->view->render("admin/all_messages", $data);
 		echo "<font color='red'> Message Deleted!</font>";
 		$this->view->render("front/_include/footer_view");
-
 	}
 
+	/**
+	* update one message
+	*/
 	public function update_messages ()
 	{
-		include("Models/Contact.php");
-		$messages = new Contact();
+		$messages = $this->loadModel($contact);
 		$id = $_GET['id'];
 		$onemessage = $messages->c_getone($id);
 		$data['onemessage'] = $onemessage;
 		$this->view->render("admin/_include/header_view");
 		$this->view->render("admin/update_message",$data);
 		$this->view->render("front/_include/footer_view");
-
 	}
 
+	/**
+	* show updated message
+	*/
 	public function updated_message ()
 	{
-		include("Models/Contact.php");
-		$messages = new Contact();
+		$messages = $this->loadModel($contact);
 		$id = $_POST['id'];
 		$text = $_POST['text'];
-		
-
 		$upmessage = $messages->c_update($id,$text);
 		$onemessage = $messages->c_getone($id);
 		$data['onemessage'] = $onemessage;
@@ -206,7 +225,6 @@
 		$this->view->render("admin/show_message",$data);
 		echo "<font color='blue'> Message edited!</font>";
 		$this->view->render("front/_include/footer_view");
-
 	}
 	
 
@@ -215,21 +233,14 @@
 	*/
 	public function addNews ()
 	{
-		include("Models/News.php");
-		$news = new News();
+		$news = $this->loadModel($news);
 		$name_cat = $news->get_cat();
 		$data['name_cat'] = $name_cat;
-
-
 		$this->view->render("admin/_include/header_view");
 		$this->view->render("admin/addnews",$data);
 
-		
-		
 		if(isset($_POST['btn']))	{
 			$this->upload();
-
-
 			$headline = $_POST['headline'];
 			$content = $_POST['content'];
 			$excerpt = $_POST['excerpt'];
@@ -248,8 +259,7 @@
 	public function delete_news ()
 	{
 		
-		include("Models/News.php");
-		$news = new News();
+		$news = $this->loadModel($news);
 		$delnews = $news->delete();
 		$allNews = $news->get_all();
 		$data['allNews'] = $allNews;
@@ -264,8 +274,7 @@
 	*/
 	public function getone ()
 	{
-		include("Models/News.php");
-		$news = new News();
+		$news = $this->loadModel($news);
 		$id = $_GET['id'];
 		$onenews = $news->get_news($id);
 		$data['onenews'] = $onenews;
