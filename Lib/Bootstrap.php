@@ -25,8 +25,6 @@
 		  
 		  $controller->{$method}();
 
-		  // include("Models/News.php");
-		  // $news = new News();
 			
 		}
 	}

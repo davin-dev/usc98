@@ -43,9 +43,20 @@ body {
 .navigation ul li a {
   color: #555555;
 }
+.navigation ul li form {
+  color: #555555;
+}
+
+.navigation ul li form:hover {
+  color: rgb(38, 119, 226);
+}
 
 .navigation ul li a:hover {
   color: rgb(38, 119, 226);
+}
+
+li:last-child {
+  float: right;
 }
 
 .content {
