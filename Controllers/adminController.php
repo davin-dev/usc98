@@ -24,6 +24,7 @@
 	*/
     public function index()
     {
+		$this->dashboard();
         if($this->is_admin())
         {
             redirect(BASE_URL . 'admin/dashboard');
@@ -55,13 +56,16 @@
 	* login function
 	*/
     public function login(){
+		$this->view->render("admin/_include/dashboard_view");
+
+		$this->dashboard();
         $result = $this->model->login();
         if ($result->num_rows) {
             $_SESSION['is_admin'] = true;
-            redirect(BASE_URL . 'admin/dashboard');
+            $this->dashboard();
         } else {
             $_SESSION['errors'] = 'نام کاربری یا رمز عبور اشتباه است';
-            redirect(BASE_URL . 'admin');
+            $this->index();
         }
     }
 
@@ -158,8 +162,8 @@
 	*/
 	public function show_messages ()
 	{
-		$messages = $this->loadModel($contact);
-		$allmessages = $messages->c_getall();
+		$this->loadModel("contact");
+		$allmessages = $this->model->c_getall();
 		$data['allmessages'] = $allmessages;
 		$this->view->render("admin/_include/header_view");
 		$this->view->render("admin/all_messages", $data);

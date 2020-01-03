@@ -18,7 +18,7 @@ class newsController extends Controller
       $news[$i]['headline'] = $row['headline'];
       $news[$i]['excerpt'] = $row['excerpt'];
       $news[$i]['picture'] = $row['picture'];
-      
+
       $category = $this->model->get_category($row['news_cat']);
       $news[$i]['category'] = $category["title"];
       $i++;
@@ -33,7 +33,7 @@ class newsController extends Controller
   {
     $i = 0;
     if($id == NULL) $id = $_GET['id'];
-    
+
     $oneNews = $this->model->get_news($id);
     $data = [];
     if($_SESSION['view'] == 1){
@@ -84,35 +84,41 @@ class newsController extends Controller
       $addmessage = $this->model->add_comment($id,$fullname,$text,$email);
     }
     $errors = $data['errors'];
-    
+
     $this->continued($id,$errors);
   }
 
   public function search(){
-    $query = $_POST['q'];
-    $result = $this->model->search($query);
-
     $this->view->render("front/_include/header_view");
-    while($row = $result->fetch_assoc()) {
-      $id = $row['id'];
-      $this->result($id);
+    if(!empty($_POST['q'])){
+        $query = $_POST['q'];
+        $results = $this->model->search($query);
+        while($row = $results->fetch_assoc()) {
+        $id = $row['id'];
+        $this->results($id);
+      }
     }
+    else {
+      $this->view->render("front/news/search_view");
+    }
+
     $this->view->render("front/_include/footer_view");
+
   }
 
-  public function result($id){
+  public function results($id){
     $allNews = $this->model->get_news($id);
     $data = [];
-    
+
     while ($row = $allNews->fetch_assoc()){
       $news['id'] = $row['id'];
       $news['headline'] = $row['headline'];
       $news['excerpt'] = $row['excerpt'];
       $news['picture'] = $row['picture'];
-      
+
       $category = $this->model->get_category($row['news_cat']);
       $news['category'] = $category["title"];
-      
+
     }
     $data['news'] = $news;
     $this->view->render("front/news/search_view", $data);
@@ -125,7 +131,7 @@ class newsController extends Controller
     if($_SESSION['like'] == 1){
         $this->model->likeadd($id);
         $this->continued($id);
-        $_SESSION['like'] = 0;    
+        $_SESSION['like'] = 0;
     }
     else{
         $this->continued($id);
