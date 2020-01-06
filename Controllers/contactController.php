@@ -6,6 +6,9 @@
 		parent::__construct();
     }
 
+    /**
+    * render contact us page
+    */
     public function index ()
     {
       $data['errors'] = 3;
@@ -15,6 +18,9 @@
       
     }
 
+    /**
+    * add message
+    */
     public function addmessage ()
     {
       $fullname = $_POST['fullname'];
@@ -33,8 +39,6 @@
       $this->view->render("front/_include/header_view");
       $this->view->render("front/contact_us/index_view",$data);
       $this->view->render("front/_include/footer_view");
-      
-
     }
 
     

@@ -8,6 +8,7 @@ NOTE : database backup files are included.<br>
 - LIKE Button [ADDED✅]<br>
 - Comment System [ADDED✅]<br>
 - News Menu <br>
+- Category in home page <br>
 - Slider <br>
 
 **Update 1 : <br>**

@@ -9,7 +9,7 @@
   include('Lib/Controller.php');
   include('Lib/View.php');
   include('Lib/DB.php');
-  
+
   $app = new Bootstrap();
   ?>
 

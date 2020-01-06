@@ -6,7 +6,7 @@
             <div class="alert alert-danger <?= isset($errors) ? "show" : ""; ?>">
                 <?= isset($errors) ? $errors : ""; ?>
             </div>
-            <form method="POST" action="<?= BASE_URL ?>/admin/login">
+            <form method="POST" action="wtfff">
                 <div class="form-group">
                     <input type="text" placeholder="username" name="admin_username" /><br/>
                 </div>
