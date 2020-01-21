@@ -4,10 +4,6 @@ NOTE : database backup files are included.<br>
 
 #### TODO LIST
 
-- Search Engine [ADDED✅]<br>
-- LIKE Button [ADDED✅]<br>
-- Comment System [ADDED✅]<br>
-- News Menu [ADDED✅]<br>
 - Category in home page [ADDED✅]<br>
 - Slider <br>
 
@@ -24,3 +20,10 @@ NOTE : database backup files are included.<br>
 - Website title link fixed.<br>
 - CSS bugs fixed.<br>
 - News Image Upload reworked.<br>
+
+**Update 3 : <br>**
+
+- Search Engine.<br>
+- LIKE Button.<br>
+- Comment System.<br>
+- News Menu.<br>
