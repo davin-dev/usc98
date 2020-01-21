@@ -7,7 +7,7 @@ NOTE : database backup files are included.<br>
 - Search Engine [ADDED✅]<br>
 - LIKE Button [ADDED✅]<br>
 - Comment System [ADDED✅]<br>
-- News Menu <br>
+- News Menu [ADDED✅]<br>
 - Category in home page <br>
 - Slider <br>
 

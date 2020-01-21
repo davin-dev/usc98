@@ -4,6 +4,11 @@ class newsController extends Controller
   function __construct()
   {
     parent::__construct();
+
+    $this->loadModel("news");
+    $category = $this->model->get_category();
+    $data['category'] = $category;
+    $this->view->render("front/_include/header_view",$data);
   }
 
   public function index()
@@ -24,7 +29,6 @@ class newsController extends Controller
       $i++;
     }
     $data['news'] = $news;
-    $this->view->render("front/_include/header_view");
     $this->view->render("front/news/index_view", $data);
     $this->view->render("front/_include/footer_view");
   }
@@ -63,7 +67,6 @@ class newsController extends Controller
       $news['category'] = $category["title"];
     }
     $data['news'] = $news;
-    $this->view->render("front/_include/header_view");
     $this->view->render("front/news/onenews_view", $data);
     $this->view->render("front/_include/footer_view");
 
@@ -91,7 +94,6 @@ class newsController extends Controller
   public function search(){
 
     if (isset($_POST['search'])) {
-      $this->view->render("front/_include/header_view");
       if(!empty($_POST['q'])){
         $query = $_POST['q'];
         $results = $this->model->search($query);
@@ -137,8 +139,6 @@ class newsController extends Controller
       $this->view->render("front/news/search_view", $data);
   }
 
-
-
   public function like(){
     $id = $_GET['id'];
     if($_SESSION['like'] == 1){
@@ -150,6 +150,16 @@ class newsController extends Controller
         $this->continued($id);
     }
   }
+
+  public function category(){
+    $id = $_GET['id'];
+    $results = $this->model->newsofcat($id);
+    while($row = $results->fetch_assoc()) {
+      $id = $row['id'];
+      $this->results($id);
+    }
+  }
+
 
 }
 

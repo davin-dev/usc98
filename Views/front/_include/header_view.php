@@ -3,10 +3,6 @@
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="<?= BASE_URL ?>public/assets/front/css/style.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>public/assets/front/css/main.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>public/assets/front/css/util.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>public/assets/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>public/assets/Linearicons-Free-v1.0.0/icon-font.min.css">
 </head>
 
 <body>
@@ -26,9 +22,9 @@
                     <i class="fa fa-caret-down"></i>
                     </button>
                     <div class="dropdown-content">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
+                        <?php while($cat = $category->fetch_assoc()){	 ?>
+                        <a href="<?= BASE_URL ?>news/category?id=<?php echo $cat["id"]; ?>">    <?= $cat["title"]; ?>     </a>
+                        <?php } ?>
                     </div>
                 </div>
             

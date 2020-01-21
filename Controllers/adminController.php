@@ -35,7 +35,10 @@
             delete_session('errors');
         }
 
-		$this->view->render("front/_include/header_view");
+		$this->loadModel("news");
+		$category = $this->model->get_category();
+		$data['category'] = $category;
+		$this->view->render("front/_include/header_view",$data);
 		$this->view->render("admin/auth/login_form_view", $data);
 		$this->view->render("front/_include/footer_view");
 
