@@ -12,7 +12,7 @@
     if($cat["id"] == $ns["news_cat"]){
     ?>
     
-<a class="continue" href="news/continued&id=<?php echo $ns["id"]; ?>"><?php echo $ns["headline"]; $i++ ?></a><br>
+<a class="read" href="news/continued&id=<?php echo $ns["id"]; ?>"><?php echo $ns["headline"]; $i++ ?></a><br>
 <?php }} // end of foreach ?>
 
 

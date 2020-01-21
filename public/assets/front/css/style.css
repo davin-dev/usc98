@@ -181,6 +181,16 @@ a.continue {
   color: blue;
   text-decoration: none;
 }
+a.read {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+a.read:hover {
+  font-weight: bold;
+  color: rgb(0, 62, 121);
+}
+
 a.likes {
   color: rgb(255, 0, 0);
   font-size: 3em;

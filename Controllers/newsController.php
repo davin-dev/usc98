@@ -15,7 +15,7 @@ class newsController extends Controller
   {
     $_SESSION['like'] = 1;
     $_SESSION['view'] = 1;
-    $allNews = $this->model->get5();
+    $allNews = $this->model->get_all();
     $data = [];
     $i = 0;
     while ($row = $allNews->fetch_assoc()){
