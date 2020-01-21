@@ -24,6 +24,7 @@
         $news[$i]['id'] = $row['id'];
         $news[$i]['headline'] = $row['headline'];
         $news[$i]['news_cat'] = $row['news_cat'];
+        $news[$i]['picture'] = $row['picture'];
         $i++;
       }
       

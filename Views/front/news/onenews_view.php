@@ -13,14 +13,14 @@
         
         <hr><div class="comments"><h2>Comments ✏ </h2>
         <?php foreach($news as $ns) { if(isset($ns['name'])){?>
-            <div class="text">Name : <?= $ns['name']; ?></div>
-            <div class="text">Comment : <?= $ns['text']; ?></div><hr class="cm">
+            <div class="note">Name : <?= $ns['name']; ?></div>
+            <div class="note">Comment : <?= $ns['text']; ?></div><hr class="cm">
             <?php }} // end of foreach ?>
         </div>
             
             <br> <div class="alert alert-danger <?= $errors == 1 ? "show" : ""; ?>">Full name is required</div>
             <div class="content contact-us-content">
-                <p>please be polite while you writing your message </p>
+                <p>please be polite while you writing your message </p><br>
 
                 <form method="POST" >
                     <div class="form-group">
@@ -49,7 +49,7 @@
                 <br> <div class="alert alert-success <?=  $errors == 0 ? "show" : ""; ?>">Your message was sent successfully.</div>
             </div>
 
-        <a href="/news">Back to News List</a>
+        <a class="read" href="/news">Back to News List</a>
     </div>
    
 </div>
