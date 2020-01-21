@@ -2,7 +2,7 @@
 <div class="content contact-us-content">
     <p>enter your message to admin of this site. please be polite while you writing your message :) </p>
 
-    <form method="POST" action="/Contact/addmessage">
+    <form method="POST">
         <div class="form-group">
             <label for="">Full name:
                 <span class="require">*</span>
@@ -23,7 +23,7 @@
         </div>
 
         <div class="form-group">
-            <input type="submit" value="Send" />
+            <input type="submit" formaction="/Contact/addmessage" name="message" value="Send" />
         </div>
     </form>
     <br> <div class="alert alert-success <?=  $errors == 0 ? "show" : ""; ?>">Your message was sent successfully.</div>

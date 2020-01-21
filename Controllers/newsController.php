@@ -4,13 +4,18 @@ class newsController extends Controller
   function __construct()
   {
     parent::__construct();
+
+    $this->loadModel("news");
+    $category = $this->model->get_category();
+    $data['category'] = $category;
+    $this->view->render("front/_include/header_view",$data);
   }
 
   public function index()
   {
     $_SESSION['like'] = 1;
     $_SESSION['view'] = 1;
-    $allNews = $this->model->get_all();
+    $allNews = $this->model->get5();
     $data = [];
     $i = 0;
     while ($row = $allNews->fetch_assoc()){
@@ -24,7 +29,6 @@ class newsController extends Controller
       $i++;
     }
     $data['news'] = $news;
-    $this->view->render("front/_include/header_view");
     $this->view->render("front/news/index_view", $data);
     $this->view->render("front/_include/footer_view");
   }
@@ -63,7 +67,6 @@ class newsController extends Controller
       $news['category'] = $category["title"];
     }
     $data['news'] = $news;
-    $this->view->render("front/_include/header_view");
     $this->view->render("front/news/onenews_view", $data);
     $this->view->render("front/_include/footer_view");
 
@@ -89,21 +92,33 @@ class newsController extends Controller
   }
 
   public function search(){
-    $this->view->render("front/_include/header_view");
-    if(!empty($_POST['q'])){
+
+    if (isset($_POST['search'])) {
+      if(!empty($_POST['q'])){
         $query = $_POST['q'];
         $results = $this->model->search($query);
-        while($row = $results->fetch_assoc()) {
-        $id = $row['id'];
-        $this->results($id);
+
+        if($results->num_rows === 0)
+        {
+          $this->view->render("front/news/search_view");
+        }
+        else
+        {
+          while($row = $results->fetch_assoc()) {
+            $id = $row['id'];
+            $this->results($id);
+        }
+        
       }
-    }
-    else {
-      $this->view->render("front/news/search_view");
-    }
+      }
+      else {
+        $this->view->render("front/news/search_view");
+      }
 
-    $this->view->render("front/_include/footer_view");
+      $this->view->render("front/_include/footer_view");
 
+      } 
+    
   }
 
   public function results($id){
@@ -120,11 +135,9 @@ class newsController extends Controller
       $news['category'] = $category["title"];
 
     }
-    $data['news'] = $news;
-    $this->view->render("front/news/search_view", $data);
+      $data['news'] = $news;
+      $this->view->render("front/news/search_view", $data);
   }
-
-
 
   public function like(){
     $id = $_GET['id'];
@@ -137,6 +150,16 @@ class newsController extends Controller
         $this->continued($id);
     }
   }
+
+  public function category(){
+    $id = $_GET['id'];
+    $results = $this->model->newsofcat($id);
+    while($row = $results->fetch_assoc()) {
+      $id = $row['id'];
+      $this->results($id);
+    }
+  }
+
 
 }
 

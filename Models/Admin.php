@@ -18,7 +18,7 @@
 
                 return $this->db_exec($sql);
             } else {
-                return false;
+                return NULL;
             }
         }
 
