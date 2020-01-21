@@ -82,6 +82,9 @@
       return $this->db_exec("SELECT * FROM news WHERE `news_cat`=$id");
     }
 
+    public function get5($id){
+      return $this->db_exec("SELECT * FROM news WHERE `news_cat`=$id LIMIT 5");
+    }
     public function search($query)
     {
         return $this->db_exec("SELECT * FROM news WHERE `headline` LIKE '%$query%'");

@@ -273,3 +273,14 @@ a:visited {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+.category {
+  padding: 12px 16px;
+}
+.category hr {
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  border-width: 2px;
+  width: 10rem;
+}
