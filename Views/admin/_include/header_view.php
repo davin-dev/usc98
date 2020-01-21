@@ -17,7 +17,6 @@
             <li><a href="/admin/addNews">Insert news</a> </li>
             <li><a href="/admin/cat_mang">Category Management</a> </li>
             <li><a href="/admin/show_messages">Read All Messages</a> </li>
-            <li><a href="/admin/upload">File Upload</a> </li>
             <li><a href="/admin/logout">Log out</a> </li>
         </ul>
     </div>

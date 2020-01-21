@@ -100,8 +100,8 @@ a.continue {
   color: #f00;
 }
 .alert-success {
-  background: rgba(0, 255, 0, 10%);
-  color: #0f0;
+  background: rgba(85, 187, 85, 0.1);
+  color: rgb(21, 51, 21);
 }
 .login-form {
   width: 300px;

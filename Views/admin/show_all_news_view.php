@@ -24,4 +24,4 @@
 
 <br>
 		<br>
-		<a href="admin/back">back to Dashboard</a>
+	

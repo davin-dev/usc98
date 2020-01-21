@@ -22,7 +22,7 @@
             <div class="content contact-us-content">
                 <p>please be polite while you writing your message </p>
 
-                <form method="POST" action="/news/addcomment&id=<?= $news['id'] ?>">
+                <form method="POST" >
                     <div class="form-group">
                         <label for="">Full name:
                             <span class="require">*</span>
@@ -43,7 +43,7 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="submit" value="Send" />
+                        <input type="submit" formaction="/news/addcomment&id=<?= $news['id'] ?>" name="comment" value="Send" />
                     </div>
                 </form>
                 <br> <div class="alert alert-success <?=  $errors == 0 ? "show" : ""; ?>">Your message was sent successfully.</div>

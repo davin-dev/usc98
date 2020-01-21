@@ -89,21 +89,25 @@ class newsController extends Controller
   }
 
   public function search(){
-    $this->view->render("front/_include/header_view");
-    if(!empty($_POST['q'])){
-        $query = $_POST['q'];
-        $results = $this->model->search($query);
-        while($row = $results->fetch_assoc()) {
-        $id = $row['id'];
-        $this->results($id);
+
+    if (isset($_POST['search'])) {
+      $this->view->render("front/_include/header_view");
+      if(!empty($_POST['q'])){
+          $query = $_POST['q'];
+          $results = $this->model->search($query);
+          while($row = $results->fetch_assoc()) {
+          $id = $row['id'];
+          $this->results($id);
+        }
       }
-    }
-    else {
-      $this->view->render("front/news/search_view");
-    }
+      else {
+        $this->view->render("front/news/search_view");
+      }
 
-    $this->view->render("front/_include/footer_view");
+      $this->view->render("front/_include/footer_view");
 
+      } 
+    
   }
 
   public function results($id){

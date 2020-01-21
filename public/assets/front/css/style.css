@@ -119,8 +119,8 @@ li:last-child {
 }
 
 .alert-success {
-  background: rgba(0, 255, 0, 10%);
-  color: #0f0;
+  background: rgba(54, 255, 54, 0.493);
+  color: rgba(22, 51, 22, 0.493);
 }
 
 .login-form {
