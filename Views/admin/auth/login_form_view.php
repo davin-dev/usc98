@@ -1,5 +1,6 @@
 <div class="content">
-    <div class="login-form">
+<br><br><br>
+<div class="login-form">
         <fieldset>
             <legend color='white'>Admin login form</legend>
 

@@ -3,6 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="<?= BASE_URL ?>public/assets/front/css/style.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>public/assets/front/css/main.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>public/assets/front/css/util.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>public/assets/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>public/assets/Linearicons-Free-v1.0.0/icon-font.min.css">
 </head>
 
 <body>
@@ -12,13 +16,25 @@
         </h1>
     </div>
 
-    <div class="navigation">
+    <div class="navbar">
         <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/news">News</a></li>
-            <li><a href="/about">About us</a></li>
-            <li><a href="/contact">Contact us</a></li>
-            <li><a href="/admin">Admin Panel</a></li>
-            <li><form method="POST" >Search <input type="text" name="q"> <input type="submit" formaction="/news/search" name="search" value="🔍" ></li>
+            <a href="/">Home</a>
+            <a href="/news">News</a>
+            
+                <div class="dropdown">
+                    <button class="dropbtn">Categories
+                    <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#">Link 1</a>
+                        <a href="#">Link 2</a>
+                        <a href="#">Link 3</a>
+                    </div>
+                </div>
+            
+            <a href="/about">About us</a>
+            <a href="/contact">Contact us</a>
+            <a href="/admin">Admin Panel</a>
+            <li><form method="POST" > <p> Search <input type="text" name="q"> <input type="submit" formaction="/news/search" name="search" value="🔍" ></p></li>
         </ul>
     </div>
