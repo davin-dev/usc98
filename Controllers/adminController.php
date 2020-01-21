@@ -94,12 +94,21 @@
 	/**
 	* category management
 	*/
-	public function cat_mang(){
-		$allcat = $this->model->cat_get();
-		$data['allcat'] = $allcat;
-		$this->view->render("admin/_include/header_view");
-		$this->view->render("admin/cat_mang",$data);
-		$this->view->render("front/_include/footer_view");
+	public function cat_mang()
+	{
+		if($this->is_admin())
+		{
+			$allcat = $this->model->cat_get();
+			$data['allcat'] = $allcat;
+			$this->view->render("admin/_include/header_view");
+			$this->view->render("admin/cat_mang",$data);
+			$this->view->render("front/_include/footer_view");
+		}
+		else
+		{
+			$this->index();
+		}
+		
 	}
 
 
@@ -108,15 +117,22 @@
 	* category add
 	*/
 	public function cat_add(){
-		if(isset($_POST['submit']))	{
-			$name = $_POST['category'];
-			$addcat = $this->model->cat_add($name);
-			$allcat = $this->model->cat_get();
-			$data['allcat'] = $allcat;
-			$this->view->render("admin/_include/header_view");
-			$this->view->render("admin/cat_mang",$data);
-			echo "<font color='green'> Category Added!</font>";
-			$this->view->render("front/_include/footer_view");
+		if($this->is_admin())
+		{
+			if(isset($_POST['submit']))	{
+				$name = $_POST['category'];
+				$addcat = $this->model->cat_add($name);
+				$allcat = $this->model->cat_get();
+				$data['allcat'] = $allcat;
+				$this->view->render("admin/_include/header_view");
+				$this->view->render("admin/cat_mang",$data);
+				echo "<font color='green'> Category Added!</font>";
+				$this->view->render("front/_include/footer_view");
+		}
+		}
+		else
+		{
+			$this->index();
 		}
 
 	}
@@ -125,16 +141,24 @@
 	* category delete
 	*/
 	public function cat_delete(){
-		$id = $_GET['id'];
-		$addcat = $this->model->cat_delete($id);
-		$allcat = $this->model->cat_get();
-		$data['allcat'] = $allcat;
-		$this->view->render("admin/_include/header_view");
-		$this->view->render("admin/cat_mang",$data);
-		$allcat = $this->model->cat_get();
-		$data['allcat'] = $allcat;
-		echo "<font color='red'> Category Deleted!</font>";
-		$this->view->render("front/_include/footer_view");
+		if($this->is_admin())
+		{
+			$id = $_GET['id'];
+			$addcat = $this->model->cat_delete($id);
+			$allcat = $this->model->cat_get();
+			$data['allcat'] = $allcat;
+			$this->view->render("admin/_include/header_view");
+			$this->view->render("admin/cat_mang",$data);
+			$allcat = $this->model->cat_get();
+			$data['allcat'] = $allcat;
+			echo "<font color='red'> Category Deleted!</font>";
+			$this->view->render("front/_include/footer_view");
+		}
+		else
+		{
+			$this->index();
+		}
+		
 	}
 
 
@@ -143,12 +167,20 @@
 	*/
 	public function getNews ()
 	{
-		$this->loadModel("news");
-		$allNews = $this->model->get_all();
-		$data['allNews'] = $allNews;
-		$this->view->render("admin/_include/header_view");
-		$this->view->render("admin/show_all_news_view", $data);
-		$this->view->render("front/_include/footer_view");
+		if($this->is_admin())
+		{
+			$this->loadModel("news");
+			$allNews = $this->model->get_all();
+			$data['allNews'] = $allNews;
+			$this->view->render("admin/_include/header_view");
+			$this->view->render("admin/show_all_news_view", $data);
+			$this->view->render("front/_include/footer_view");
+		}
+		else
+		{
+			$this->index();
+		}
+		
 	}
 	
 	
@@ -157,12 +189,20 @@
 	*/
 	public function show_messages ()
 	{
-		$this->loadModel("contact");
-		$allmessages = $this->model->c_getall();
-		$data['allmessages'] = $allmessages;
-		$this->view->render("admin/_include/header_view");
-		$this->view->render("admin/all_messages", $data);
-		$this->view->render("front/_include/footer_view");
+		if($this->is_admin())
+		{
+			$this->loadModel("contact");
+			$allmessages = $this->model->c_getall();
+			$data['allmessages'] = $allmessages;
+			$this->view->render("admin/_include/header_view");
+			$this->view->render("admin/all_messages", $data);
+			$this->view->render("front/_include/footer_view");
+		}
+		else
+		{
+			$this->index();
+		}
+		
 	}
 
 	/**
@@ -170,13 +210,21 @@
 	*/
 	public function show1_message ()
 	{
-		$this->loadModel("contact");
-		$id = $_GET['id'];
-		$onemessage = $this->model->c_getone($id);
-		$data['onemessage'] = $onemessage;
-		$this->view->render("admin/_include/header_view");
-		$this->view->render("admin/show_message",$data);
-		$this->view->render("front/_include/footer_view");
+		if($this->is_admin())
+		{
+			$this->loadModel("contact");
+			$id = $_GET['id'];
+			$onemessage = $this->model->c_getone($id);
+			$data['onemessage'] = $onemessage;
+			$this->view->render("admin/_include/header_view");
+			$this->view->render("admin/show_message",$data);
+			$this->view->render("front/_include/footer_view");
+		}
+		else
+		{
+			$this->index();
+		}
+		
 	}
 
 	/**
@@ -184,15 +232,23 @@
 	*/
 	public function delete_messages ()
 	{
-		$this->loadModel("contact");
-		$id = $_GET['id'];
-		$messages = $this->model->c_delete($id);
-		$allmessages = $this->model->c_getall();
-		$data['allmessages'] = $allmessages;
-		$this->view->render("admin/_include/header_view");
-		$this->view->render("admin/all_messages", $data);
-		echo "<font color='red'> Message Deleted!</font>";
-		$this->view->render("front/_include/footer_view");
+		if($this->is_admin())
+		{
+			$this->loadModel("contact");
+			$id = $_GET['id'];
+			$messages = $this->model->c_delete($id);
+			$allmessages = $this->model->c_getall();
+			$data['allmessages'] = $allmessages;
+			$this->view->render("admin/_include/header_view");
+			$this->view->render("admin/all_messages", $data);
+			echo "<font color='red'> Message Deleted!</font>";
+			$this->view->render("front/_include/footer_view");
+		}
+		else
+		{
+			$this->index();
+		}
+		
 	}
 
 	/**
@@ -200,13 +256,21 @@
 	*/
 	public function update_messages ()
 	{
-		$this->loadModel("contact");
-		$id = $_GET['id'];
-		$onemessage = $this->model->c_getone($id);
-		$data['onemessage'] = $onemessage;
-		$this->view->render("admin/_include/header_view");
-		$this->view->render("admin/update_message",$data);
-		$this->view->render("front/_include/footer_view");
+		if($this->is_admin())
+		{
+			$this->loadModel("contact");
+			$id = $_GET['id'];
+			$onemessage = $this->model->c_getone($id);
+			$data['onemessage'] = $onemessage;
+			$this->view->render("admin/_include/header_view");
+			$this->view->render("admin/update_message",$data);
+			$this->view->render("front/_include/footer_view");
+		}
+		else
+		{
+			$this->index();
+		}
+		
 	}
 
 	/**
@@ -214,16 +278,24 @@
 	*/
 	public function updated_message ()
 	{
-		$this->loadModel("contact");
-		$id = $_POST['id'];
-		$text = $_POST['text'];
-		$upmessage = $this->model->c_update($id,$text);
-		$onemessage = $this->model->c_getone($id);
-		$data['onemessage'] = $onemessage;
-		$this->view->render("admin/_include/header_view");
-		$this->view->render("admin/show_message",$data);
-		echo "<font color='blue'> Message edited!</font>";
-		$this->view->render("front/_include/footer_view");
+		if($this->is_admin())
+		{
+			$this->loadModel("contact");
+			$id = $_POST['id'];
+			$text = $_POST['text'];
+			$upmessage = $this->model->c_update($id,$text);
+			$onemessage = $this->model->c_getone($id);
+			$data['onemessage'] = $onemessage;
+			$this->view->render("admin/_include/header_view");
+			$this->view->render("admin/show_message",$data);
+			echo "<font color='blue'> Message edited!</font>";
+			$this->view->render("front/_include/footer_view");
+		}
+		else
+		{
+			$this->index();
+		}
+		
 	}
 	
 
@@ -232,24 +304,32 @@
 	*/
 	public function addNews ()
 	{
-		$this->loadModel("news");
-		$name_cat = $this->model->get_cat();
-		$data['name_cat'] = $name_cat;
-		$this->view->render("admin/_include/header_view");
-		$this->view->render("admin/addnews",$data);
-
-		if(isset($_POST['btn'])){
-			$this->upload();
-			$headline = $_POST['headline'];
-			$content = $_POST['content'];
-			$excerpt = $_POST['excerpt'];
-			$cat_id = $_POST['news_cat'];
-			$picture = $_FILES['fileToUpload']['name'];
-		 	$date = $_POST['date'];
-			$addnews = $this->model->add($headline,$content,$excerpt,$cat_id,$picture,$date);
-			echo "<font color='green'> News added!</font>";
+		if($this->is_admin())
+		{
+			$this->loadModel("news");
+			$name_cat = $this->model->get_cat();
+			$data['name_cat'] = $name_cat;
+			$this->view->render("admin/_include/header_view");
+			$this->view->render("admin/addnews",$data);
+	
+			if(isset($_POST['btn'])){
+				$this->upload();
+				$headline = $_POST['headline'];
+				$content = $_POST['content'];
+				$excerpt = $_POST['excerpt'];
+				$cat_id = $_POST['news_cat'];
+				$picture = $_FILES['fileToUpload']['name'];
+				 $date = $_POST['date'];
+				$addnews = $this->model->add($headline,$content,$excerpt,$cat_id,$picture,$date);
+				echo "<font color='green'> News added!</font>";
+			}
+			$this->view->render("front/_include/footer_view");
 		}
-		$this->view->render("front/_include/footer_view");
+		else
+		{
+			$this->index();
+		}
+		
 	}
 
 	/**
@@ -257,15 +337,22 @@
 	*/
 	public function delete_news ()
 	{
+		if($this->is_admin())
+		{
+			$this->loadModel("news");
+			$delnews = $this->model->delete();
+			$allNews = $this->model->get_all();
+			$data['allNews'] = $allNews;
+			$this->view->render("admin/_include/header_view");
+			$this->view->render("admin/show_all_news_view", $data);
+			echo "<font color='red'> News Deleted!</font>";
+			$this->view->render("front/_include/footer_view");
+		}
+		else
+		{
+			$this->index();
+		}
 		
-		$this->loadModel("news");
-		$delnews = $this->model->delete();
-		$allNews = $this->model->get_all();
-		$data['allNews'] = $allNews;
-		$this->view->render("admin/_include/header_view");
-		$this->view->render("admin/show_all_news_view", $data);
-		echo "<font color='red'> News Deleted!</font>";
-		$this->view->render("front/_include/footer_view");
 	}
 
 	/**
@@ -273,13 +360,21 @@
 	*/
 	public function getone ()
 	{
-		$this->loadModel("news");
-		$id = $_GET['id'];
-		$onenews = $this->model->get_news($id);
-		$data['onenews'] = $onenews;
-		$this->view->render("admin/_include/header_view");		
-		$this->view->render("admin/show_news",$data);
-		$this->view->render("front/_include/footer_view");
+		if($this->is_admin())
+		{
+			$this->loadModel("news");
+			$id = $_GET['id'];
+			$onenews = $this->model->get_news($id);
+			$data['onenews'] = $onenews;
+			$this->view->render("admin/_include/header_view");		
+			$this->view->render("admin/show_news",$data);
+			$this->view->render("front/_include/footer_view");
+		}
+		else
+		{
+			$this->index();
+		}
+		
 	}
 
 	/**
@@ -287,10 +382,18 @@
 	*/
 	public function upload ()
 	{ 
+		if($this->is_admin())
+		{
+			$this->loadModel("news");
+			$file = $_FILES["fileToUpload"];
+			$uploaded = $this->model->fileupload($file);
+		}
+		else
+		{
+			$this->index();
+		}
 		
-		$this->loadModel("news");
-		$file = $_FILES["fileToUpload"];
-		$uploaded = $this->model->fileupload($file);
+		
 	}
 
 	/**
