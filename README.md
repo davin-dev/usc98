@@ -5,7 +5,7 @@ NOTE : database backup files are included.<br>
 #### TODO LIST
 
 - Category in home page [ADDED✅]<br>
-- Slider <br>
+- Slider [ADDED✅]<br>
 
 **Update 1 : <br>**
 
