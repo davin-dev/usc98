@@ -58,7 +58,7 @@
   <div class="mySlides fade">
     
     <img id="slider" src="<?= BASE_URL ?>public/img/<?php echo $ns["picture"]; ?>">
-    <div dir="rtl" lang="fa" class="text"> <a class="read" href="news/continued&id=<?php echo $ns["id"]; ?>" ><?php echo $ns["headline"];?></a></div>
+    <div dir="rtl" lang="fa" class="texty"> <a class="read" href="news/continued&id=<?php echo $ns["id"]; ?>" ><?php echo $ns["headline"];?></a></div>
     
   </div>
   
@@ -72,9 +72,11 @@
 
   <!-- The dots/circles -->
 <div style="text-align:center">
-<?php $i = 1; foreach($news as $ns) { ?>
+<?php $i = 1; foreach($news as $ns) {
+  if( $i < 12 ){
+  ?>
   <span class="dot" onclick="currentSlide(<?= $i ?>)"></span>
-  <?php $i++;} // end of while ?>
+  <?php $i++;}} // end of while ?>
  
 </div>
 
@@ -87,8 +89,9 @@
 
 
 <div dir="rtl" lang="fa" class="category">
-<?= $cat["title"]; ?>
+<p><?= $cat["title"]; ?></p>
 <hr>
+
 
 <?php $i = 0;
     foreach($news as $ns) {
@@ -109,5 +112,4 @@
 
 
 
-
-    </div>
+</div>
