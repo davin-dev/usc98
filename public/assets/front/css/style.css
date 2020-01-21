@@ -61,11 +61,15 @@ li:last-child {
 }
 .note {
   font-size: 24px;
+  line-height: 1.6;
+  font-weight: bolder;
+  color: #202020;
 }
 .text {
   line-height: 1.6;
   font-size: 14px;
   text-align: justify;
+  text-align: left;
   word-wrap: break-word;
 }
 .content {
@@ -358,6 +362,23 @@ a:visited {
   padding: 8px 12px;
   position: absolute;
   top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active,
+.dot:hover {
+  background-color: #717171;
 }
 
 /* Fading animation */
