@@ -188,7 +188,13 @@ a.remove {
   color: rgb(255, 0, 0);
 }
 a.continue {
-  color: blue;
+  color: rgb(15, 56, 109);
+  text-decoration: none;
+  font-size: large;
+}
+a.continue:hover {
+  font-weight: bold;
+  color: rgb(24, 45, 71);
   text-decoration: none;
 }
 a.read {

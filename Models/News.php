@@ -15,7 +15,7 @@
 
     public function get_all()
     {
-      return $this->db_exec("SELECT * FROM news");
+      return $this->db_exec("SELECT * FROM news order by `id` desc");
 
     }
 
