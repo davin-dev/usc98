@@ -45,6 +45,7 @@
     }
 </script>
 
+<body onload="showSlides();">
 
 <div class="content">
 
