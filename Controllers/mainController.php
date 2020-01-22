@@ -14,6 +14,8 @@
 
     public function index()
     {
+      $_SESSION['like'] = 1;
+      $_SESSION['view'] = 1;
       $this->loadModel("news");
       $category = $this->model->get_category();
 

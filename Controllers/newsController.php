@@ -5,6 +5,7 @@ class newsController extends Controller
   {
     parent::__construct();
 
+    
     $this->loadModel("news");
     $category = $this->model->get_category();
     $data['category'] = $category;
@@ -13,8 +14,7 @@ class newsController extends Controller
 
   public function index()
   {
-    $_SESSION['like'] = 1;
-    $_SESSION['view'] = 1;
+    
     $allNews = $this->model->get_all();
     $data = [];
     $i = 0;

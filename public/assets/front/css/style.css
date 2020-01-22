@@ -374,7 +374,7 @@ a:visited {
   height: 15px;
   width: 15px;
   margin: 0 2px;
-  background-color: #bbb;
+  background-color: rgba(57, 71, 90, 0.774);
   border-radius: 50%;
   display: inline-block;
   transition: background-color 0.6s ease;
@@ -382,6 +382,9 @@ a:visited {
 
 .active,
 .dot:hover {
+  background-color: #314157;
+}
+.active {
   background-color: #717171;
 }
 

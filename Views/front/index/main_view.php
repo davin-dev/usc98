@@ -45,6 +45,7 @@
     }
 </script>
 
+<body onload="showSlides();">
 
 <div class="content">
 
@@ -56,7 +57,6 @@
   <!-- Full-width images with number and caption text -->
   <?php foreach($news as $ns) { ?>
   <div class="mySlides fade">
-    
     <img id="slider" src="<?= BASE_URL ?>public/img/<?php echo $ns["picture"]; ?>">
     <div dir="rtl" lang="fa" class="texty"> <a class="read" href="news/continued&id=<?php echo $ns["id"]; ?>" ><?php echo $ns["headline"];?></a></div>
     
