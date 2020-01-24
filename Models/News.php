@@ -10,13 +10,11 @@
     function __construct()
     {
       parent::__construct();
-//      echo "We are in News mode ...<br/>";
     }
 
     public function get_all()
     {
       return $this->db_exec("SELECT * FROM news order by `id` desc");
-
     }
 
     public function get_news($id)
@@ -82,13 +80,11 @@
       return $this->db_exec("SELECT * FROM news WHERE `news_cat`=$id");
     }
 
-    public function get5($id){
-      return $this->db_exec("SELECT * FROM news WHERE `news_cat`=$id LIMIT 5");
-    }
     public function search($query)
     {
         return $this->db_exec("SELECT * FROM news WHERE `headline` LIKE '%$query%'");
     }
+
     public function like($id){
       return $this->db_exec("SELECT likes FROM news WHERE `id` = $id");
     }
